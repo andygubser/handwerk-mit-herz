@@ -2,11 +2,11 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Preisliste Betonfiguren &ndash; Druckversion</title>
+  <title>Preisliste Betonfiguren</title>
   <style>
     @page {
       size: A4 portrait;
-      margin: 12mm 14mm;
+      margin: 10mm 12mm;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -15,47 +15,47 @@
       font-family: 'Basisschrift', 'Segoe UI', sans-serif;
       color: #333;
       background: #fff;
-      line-height: 1.4;
-      font-size: 11pt;
+      line-height: 1.3;
+      font-size: 10pt;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
 
     header {
       text-align: center;
-      padding-bottom: 6mm;
-      border-bottom: 0.5pt solid #8da7be;
-      margin-bottom: 5mm;
+      padding-bottom: 4mm;
+      border-bottom: 0.6pt solid #8da7be;
+      margin-bottom: 4mm;
     }
 
     .header-logo {
-      height: 22mm;
+      height: 18mm;
       width: auto;
-      margin-bottom: 2mm;
+      margin-bottom: 1.5mm;
     }
 
     header h1 {
       font-family: 'Basisschrift', Georgia, serif;
-      font-size: 18pt;
+      font-size: 16pt;
       font-weight: 700;
-      color: #5f7f9e;
-      margin-bottom: 1mm;
+      color: #6a89a3;
+      margin-bottom: 0.5mm;
     }
 
     header .subtitle {
-      font-size: 9pt;
+      font-size: 8.5pt;
       color: #777;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 4mm;
+      gap: 3mm;
     }
 
     .card {
-      border: 0.5pt solid #ccc;
-      border-radius: 3mm;
+      border: 0.5pt solid #c8c2b8;
+      border-radius: 2.5mm;
       overflow: hidden;
       break-inside: avoid;
       display: flex;
@@ -69,65 +69,63 @@
 
     .card-img {
       width: 100%;
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 4 / 3;
       object-fit: contain;
       display: block;
-      padding: 2mm;
+      padding: 1.5mm;
     }
 
     .card-badge {
       position: absolute;
-      top: 2mm;
-      right: 2mm;
+      top: 1.5mm;
+      right: 1.5mm;
       background: #6a89a3;
       color: #fff;
       font-weight: 600;
-      font-size: 8.5pt;
-      padding: 1mm 3mm;
-      border-radius: 2.5mm;
+      font-size: 8pt;
+      padding: 0.8mm 2.5mm;
+      border-radius: 2mm;
       text-align: center;
       line-height: 1.3;
     }
 
     .card-badge-per {
       display: block;
-      font-size: 6.5pt;
+      font-size: 6pt;
       font-weight: 400;
       opacity: 0.9;
     }
 
     .card-wide { grid-column: span 2; }
     .card-wide .card-img-wrap { display: grid; grid-template-columns: 1fr 1fr; }
-    .card-wide .card-img { aspect-ratio: 3 / 4; }
 
     .card-triple { grid-column: span 3; }
     .card-triple .card-img-wrap { display: grid; grid-template-columns: 1fr 1fr 1fr; }
-    .card-triple .card-img { aspect-ratio: 3 / 4; }
 
     .card-body {
-      padding: 2mm 3mm 3mm;
+      padding: 1.5mm 2mm 2mm;
       text-align: center;
-      border-top: 0.5pt solid #e5e0d8;
+      border-top: 0.4pt solid #e5e0d8;
     }
 
     .card-name {
       font-family: 'Basisschrift', Georgia, serif;
-      font-size: 10pt;
+      font-size: 9pt;
       font-weight: 600;
       color: #333;
     }
 
     .card-desc {
-      font-size: 7.5pt;
+      font-size: 7pt;
       color: #888;
     }
 
     footer {
       text-align: center;
-      padding-top: 5mm;
-      margin-top: 5mm;
-      border-top: 0.5pt solid #8da7be;
-      font-size: 8pt;
+      padding-top: 3mm;
+      margin-top: 3mm;
+      border-top: 0.6pt solid #8da7be;
+      font-size: 7.5pt;
       color: #999;
     }
   </style>
@@ -218,10 +216,7 @@
       'Alle Figuren sind handgefertigt \u2013 jedes St\u00fcck ist ein Unikat. Preise Stand ' + d.updated + '.';
   }
 
-  fetch('prices/prices.json')
-    .then(function (r) { return r.json(); })
-    .then(function (d) { render(d); })
-    .catch(function () { render(data); });
+  render(data);
 })();
 </script>
 
