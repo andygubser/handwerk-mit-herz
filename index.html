@@ -25,9 +25,9 @@
       --cream-light: #faf7f2;
       --cream-dark: #e8e1d6;
       --stone: #d4cdc2;
-      --text-dark: #3b4a56;
-      --text-body: #4a5b68;
-      --text-muted: #8494a0;
+      --text-dark: #8a9dac;
+      --text-body: #95a8b6;
+      --text-muted: #b3c2cc;
       --white: #ffffff;
       --card-bg: #ffffff;
       --shadow: 0 2px 12px rgba(59, 74, 86, 0.07);
@@ -47,45 +47,45 @@
     header {
       background: var(--blue);
       text-align: center;
-      padding: 2.5rem 1.5rem 2rem;
+      padding: 1.5rem 1.5rem 1.2rem;
       color: var(--cream-light);
     }
 
     .header-logo {
-      width: 200px;
-      max-width: 50vw;
+      width: 120px;
+      max-width: 30vw;
       height: auto;
-      margin-bottom: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      box-shadow: 0 3px 14px rgba(0, 0, 0, 0.15);
+      margin-bottom: 0.6rem;
     }
 
     header h1 {
       font-family: 'Basisschrift', Georgia, serif;
-      font-size: 2.4rem;
+      font-size: 1.6rem;
       font-weight: 700;
       color: var(--white);
       letter-spacing: 0.03em;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.15rem;
     }
 
     header .subtitle {
-      font-size: 1.05rem;
+      font-size: 0.85rem;
       font-weight: 400;
       color: var(--cream-dark);
       letter-spacing: 0.04em;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.5rem;
     }
 
     header .tagline {
       display: inline-block;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       font-weight: 500;
       color: var(--white);
       background: rgba(255, 255, 255, 0.15);
       border: 1px solid rgba(255, 255, 255, 0.35);
       border-radius: 20px;
-      padding: 0.3rem 1.2rem;
+      padding: 0.2rem 0.9rem;
       letter-spacing: 0.03em;
     }
 
@@ -96,7 +96,7 @@
       font-size: 1.4rem;
       letter-spacing: 0.6rem;
       padding: 1.5rem 0 0.5rem;
-      opacity: 0.5;
+      opacity: 0.3;
     }
 
     /* === MAIN === */
@@ -315,7 +315,7 @@
     footer {
       text-align: center;
       padding: 1.5rem;
-      color: var(--text-muted);
+      color: #c8d4dc;
       font-size: 0.82rem;
       max-width: 1100px;
       margin: 0 auto;
@@ -327,7 +327,7 @@
       font-size: 1rem;
       letter-spacing: 0.4rem;
       margin-bottom: 0.4rem;
-      opacity: 0.5;
+      opacity: 0.3;
     }
 
     .loading-msg {
@@ -551,12 +551,21 @@
         currency: 'CHF',
         updated: '2025-03',
         products: [
-      { id: 'wichtel', name: 'Wichtel', description: 'Verschiedene Farben', price: 18.00, pricePer: 'pro St\u00fcck', images: ['images/wichtel.png'] },
-      { id: 'wichtel-3er-set', name: 'Wichtel 3er Set', description: 'Gold \u00b7 nur im Set erh\u00e4ltlich', price: 30.00, pricePer: 'pro Set', images: ['images/wichtel-3er-set.png'] },
-      { id: 'haende', name: 'H\u00e4nde', price: 15.00, pricePer: 'pro St\u00fcck', images: ['images/haende.png'] },
-      { id: 'hase-gross', name: 'Hase gross', description: 'Sitzend oder stehend \u00b7 patiniert', price: 40.00, pricePer: 'pro St\u00fcck', images: ['images/hase-gross-sitzend.png', 'images/hase-gross-stehend.png'], layout: 'wide' },
-      { id: 'vogeltraenke-klein', name: 'Vogeltr\u00e4nke klein', description: 'Mit Mosaik \u00b7 patiniert', price: 35.00, pricePer: 'pro St\u00fcck', images: ['images/vogeltraenke-klein.png'] },
-      { id: 'huhn', name: 'Huhn', description: 'Verschiedene Modelle \u00b7 patiniert mit floralen Mustern', price: 30.00, pricePer: 'pro St\u00fcck', images: ['images/huhn-1.png', 'images/huhn-2.png', 'images/huhn-3.png'], layout: 'triple' }
+          { id: 'hase-gross', name: 'Hase gross', description: 'sitzend oder stehend \u00b7 patiniert', price: 40.00, pricePer: 'pro St\u00fcck', images: ['images/hase-gross-sitzend.png', 'images/hase-gross-stehend.png'], layout: 'wide' },
+          { id: 'hase-klein', name: 'Hase klein', description: 'Silhouette', price: 8.00, pricePer: 'pro St\u00fcck', images: ['images/hase-klein.jpg'] },
+          { id: 'hasen-familie', name: 'Hasen Familie', price: 15.00, pricePer: 'pro Set', images: ['images/hasen-familie.jpg'] },
+          { id: 'osterei', name: 'Osterei mit Hase', description: 'Mit Hasen-Relief', price: 7.00, pricePer: 'pro St\u00fcck', images: ['images/osterei.jpg'] },
+          { id: 'osterei-bemalt', name: 'Osterei bemalt', description: 'Gross CHF 8.00 \u00b7 Klein CHF 6.00', price: 6.00, pricePer: 'ab', images: ['images/osterei-bemalt.jpg'] },
+          { id: 'blumenei', name: 'Blumenei', description: 'mit Bl\u00fcten-Relief \u00b7 patiniert', price: 15.00, pricePer: 'pro St\u00fcck', images: ['images/blumenei.jpg'] },
+          { id: 'huhn', name: 'Huhn', description: 'verschiedene Modelle \u00b7 patiniert mit floralen Mustern', price: 30.00, pricePer: 'pro St\u00fcck', images: ['images/huhn-1.png', 'images/huhn-2.png', 'images/huhn-3.png'], layout: 'triple' },
+          { id: 'schmetterling', name: 'Schmetterling', description: 'mit Ausschnitten \u00b7 farbig', price: 10.00, pricePer: 'pro St\u00fcck', images: ['images/schmetterling.jpg'] },
+          { id: 'rose-farbig', name: 'Rose farbig', price: 10.00, pricePer: 'pro St\u00fcck', images: ['images/rose-farbig.jpg'] },
+          { id: 'wichtel', name: 'Wichtel', description: 'verschiedene Farben', price: 18.00, pricePer: 'pro St\u00fcck', images: ['images/wichtel.png'] },
+          { id: 'wichtel-3er-set', name: 'Wichtel 3er Set', description: 'Gold \u00b7 nur im Set erh\u00e4ltlich', price: 30.00, pricePer: 'pro Set', images: ['images/wichtel-3er-set.png'] },
+          { id: 'zwerg', name: 'Zwerg', description: 'mit farbiger M\u00fctze', price: 0.00, pricePer: 'pro St\u00fcck', images: ['images/zwerg-1.jpg', 'images/zwerg-2.jpg'], layout: 'wide' },
+          { id: 'katze', name: 'Katze', description: 'schlafend \u00b7 patiniert', price: 0.00, pricePer: 'pro St\u00fcck', images: ['images/katze.jpg'] },
+          { id: 'vogeltraenke-klein', name: 'Vogeltr\u00e4nke klein', description: 'patiniert', price: 35.00, pricePer: 'pro St\u00fcck', images: ['images/vogeltraenke-klein.png'] },
+          { id: 'haende', name: 'H\u00e4nde', price: 15.00, pricePer: 'pro St\u00fcck', images: ['images/haende.png'] }
         ]
       };
 

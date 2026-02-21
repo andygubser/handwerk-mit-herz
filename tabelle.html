@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Preisliste Betonfiguren &ndash; Tabelle</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 8mm 10mm;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Basisschrift', 'Segoe UI', sans-serif;
+      color: #5a6a78;
+      background: #fff;
+      line-height: 1.3;
+      font-size: 9pt;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    header {
+      text-align: center;
+      padding-bottom: 3mm;
+      border-bottom: 0.5pt solid #8da7be;
+      margin-bottom: 3mm;
+    }
+
+    .header-logo {
+      height: 16mm;
+      width: auto;
+      margin-bottom: 1mm;
+    }
+
+    header h1 {
+      font-family: 'Basisschrift', Georgia, serif;
+      font-size: 14pt;
+      font-weight: 700;
+      color: #6a89a3;
+      margin-bottom: 0.5mm;
+    }
+
+    header .subtitle {
+      font-size: 7.5pt;
+      color: #999;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      text-align: left;
+      font-size: 7pt;
+      font-weight: 600;
+      color: #8da7be;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 1.5mm 2mm;
+      border-bottom: 0.8pt solid #8da7be;
+    }
+
+    thead th:last-child {
+      text-align: right;
+    }
+
+    tbody tr {
+      border-bottom: 0.3pt solid #e5e0d8;
+    }
+
+    tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    td {
+      padding: 1.5mm 2mm;
+      vertical-align: middle;
+    }
+
+    .td-img {
+      width: 18mm;
+      padding-right: 0;
+    }
+
+    .td-img img {
+      width: 16mm;
+      height: 16mm;
+      object-fit: contain;
+      border-radius: 1.5mm;
+      background: #f5f2ed;
+      display: block;
+    }
+
+    .td-name {
+      font-family: 'Basisschrift', Georgia, serif;
+      font-weight: 600;
+      font-size: 9pt;
+      color: #5a6a78;
+    }
+
+    .td-desc {
+      font-size: 7pt;
+      color: #9aabb7;
+      margin-top: 0.3mm;
+    }
+
+    .td-price {
+      text-align: right;
+      white-space: nowrap;
+      font-weight: 600;
+      font-size: 9pt;
+      color: #6a89a3;
+    }
+
+    .td-price-per {
+      display: block;
+      font-size: 6.5pt;
+      font-weight: 400;
+      color: #9aabb7;
+    }
+
+    footer {
+      text-align: center;
+      padding-top: 2mm;
+      margin-top: 2mm;
+      border-top: 0.5pt solid #8da7be;
+      font-size: 6.5pt;
+      color: #b3c2cc;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img class="header-logo" src="images/logo.jpg" alt="BETON &ndash; Handwerk mit Herz">
+  <h1>Preisliste</h1>
+  <p class="subtitle">Handgefertigte Betonfiguren &middot; Alle Preise in CHF &middot; Jedes St&uuml;ck ein Unikat</p>
+</header>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Artikel</th>
+      <th>Preis</th>
+    </tr>
+  </thead>
+  <tbody id="table-body"></tbody>
+</table>
+
+<footer>
+  <span id="footer-text"></span>
+</footer>
+
+<script>
+(function () {
+  var tbody = document.getElementById('table-body');
+
+  function formatPrice(price) {
+    return 'Fr.\u00a0' + price.toFixed(2).replace('.00', '.\u2013');
+  }
+
+  var data = {
+    updated: '2025-03',
+    products: [
+      { id: 'hase-gross', name: 'Hase gross', description: 'Sitzend oder stehend \u00b7 patiniert', price: 40.00, pricePer: 'pro St\u00fcck', images: ['images/hase-gross-sitzend.png'] },
+      { id: 'hase-klein', name: 'Hase klein', description: 'Silhouette', price: 8.00, pricePer: 'pro St\u00fcck', images: ['images/hase-klein.jpg'] },
+      { id: 'hasen-familie', name: 'Hasen Familie', price: 15.00, pricePer: 'pro Set', images: ['images/hasen-familie.jpg'] },
+      { id: 'osterei', name: 'Osterei mit Hase', description: 'Mit Hasen-Relief', price: 7.00, pricePer: 'pro St\u00fcck', images: ['images/osterei.jpg'] },
+      { id: 'osterei-bemalt', name: 'Osterei bemalt', description: 'Gross CHF 8.00 \u00b7 Klein CHF 6.00', price: 6.00, pricePer: 'ab', images: ['images/osterei-bemalt.jpg'] },
+      { id: 'blumenei', name: 'Blumenei', description: 'Mit Bl\u00fcten-Relief \u00b7 patiniert', price: 15.00, pricePer: 'pro St\u00fcck', images: ['images/blumenei.jpg'] },
+      { id: 'huhn', name: 'Huhn', description: 'Verschiedene Modelle \u00b7 patiniert mit floralen Mustern', price: 30.00, pricePer: 'pro St\u00fcck', images: ['images/huhn-1.png'] },
+      { id: 'schmetterling', name: 'Schmetterling', description: 'Mit Ausschnitten \u00b7 farbig', price: 10.00, pricePer: 'pro St\u00fcck', images: ['images/schmetterling.jpg'] },
+      { id: 'rose-farbig', name: 'Rose farbig', price: 10.00, pricePer: 'pro St\u00fcck', images: ['images/rose-farbig.jpg'] },
+      { id: 'wichtel', name: 'Wichtel', description: 'Verschiedene Farben', price: 18.00, pricePer: 'pro St\u00fcck', images: ['images/wichtel.png'] },
+      { id: 'wichtel-3er-set', name: 'Wichtel 3er Set', description: 'Gold \u00b7 nur im Set erh\u00e4ltlich', price: 30.00, pricePer: 'pro Set', images: ['images/wichtel-3er-set.png'] },
+      { id: 'zwerg', name: 'Zwerg', description: 'Mit farbiger M\u00fctze', price: 0.00, pricePer: 'pro St\u00fcck', images: ['images/zwerg-1.jpg'] },
+      { id: 'katze', name: 'Katze', description: 'Schlafend \u00b7 patiniert', price: 0.00, pricePer: 'pro St\u00fcck', images: ['images/katze.jpg'] },
+      { id: 'vogeltraenke-klein', name: 'Vogeltr\u00e4nke klein', description: 'Mit Mosaik \u00b7 patiniert', price: 35.00, pricePer: 'pro St\u00fcck', images: ['images/vogeltraenke-klein.png'] },
+      { id: 'haende', name: 'H\u00e4nde', price: 15.00, pricePer: 'pro St\u00fcck', images: ['images/haende.png'] }
+    ]
+  };
+
+  data.products.forEach(function (p) {
+    var tr = document.createElement('tr');
+
+    var tdImg = document.createElement('td');
+    tdImg.className = 'td-img';
+    var img = document.createElement('img');
+    img.src = p.images[0];
+    img.alt = p.name;
+    tdImg.appendChild(img);
+
+    var tdInfo = document.createElement('td');
+    var nameDiv = document.createElement('div');
+    nameDiv.className = 'td-name';
+    nameDiv.textContent = p.name;
+    tdInfo.appendChild(nameDiv);
+    if (p.description) {
+      var descDiv = document.createElement('div');
+      descDiv.className = 'td-desc';
+      descDiv.textContent = p.description;
+      tdInfo.appendChild(descDiv);
+    }
+
+    var tdPrice = document.createElement('td');
+    tdPrice.className = 'td-price';
+    tdPrice.innerHTML = formatPrice(p.price);
+    if (p.pricePer) {
+      tdPrice.innerHTML += '<span class="td-price-per">' + p.pricePer + '</span>';
+    }
+
+    tr.appendChild(tdImg);
+    tr.appendChild(tdInfo);
+    tr.appendChild(tdPrice);
+    tbody.appendChild(tr);
+  });
+
+  document.getElementById('footer-text').textContent =
+    'Alle Figuren sind handgefertigt \u2013 jedes St\u00fcck ist ein Unikat. Preise Stand ' + data.updated + '.';
+})();
+</script>
+
+</body>
+</html>
