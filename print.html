@@ -6,7 +6,7 @@
   <style>
     @page {
       size: A4 portrait;
-      margin: 6mm 8mm;
+      margin: 5mm 7mm;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -24,29 +24,36 @@
     header {
       background: #8da7be;
       text-align: center;
-      padding: 4mm 4mm 3.5mm;
-      margin-bottom: 2.5mm;
+      padding: 3mm 4mm 2.5mm;
+      margin-bottom: 2mm;
       border-radius: 2mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3mm;
     }
 
     .header-logo {
-      height: 14mm;
+      height: 12mm;
       width: auto;
       border-radius: 1.5mm;
-      margin-bottom: 1.5mm;
+      flex-shrink: 0;
     }
+
+    .header-text { text-align: left; }
 
     header h1 {
       font-family: 'Basisschrift', Georgia, serif;
-      font-size: 14pt;
+      font-size: 13pt;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 0.3mm;
+      line-height: 1.1;
     }
 
     header .subtitle {
-      font-size: 7pt;
+      font-size: 6.5pt;
       color: rgba(255, 255, 255, 0.75);
+      line-height: 1.2;
     }
 
     .grid {
@@ -56,7 +63,7 @@
     }
 
     .card {
-      border: 0.4pt solid #d4cdc2;
+      border: 0.3pt solid #d4cdc2;
       border-radius: 1.5mm;
       overflow: hidden;
       break-inside: avoid;
@@ -79,13 +86,13 @@
 
     .card-badge {
       position: absolute;
-      top: 1mm;
-      right: 1mm;
+      top: 0.8mm;
+      right: 0.8mm;
       background: #6a89a3;
       color: #fff;
       font-weight: 600;
       font-size: 7pt;
-      padding: 0.5mm 2mm;
+      padding: 0.4mm 1.8mm;
       border-radius: 1.5mm;
       text-align: center;
       line-height: 1.2;
@@ -93,7 +100,7 @@
 
     .card-badge-per {
       display: block;
-      font-size: 5.5pt;
+      font-size: 5pt;
       font-weight: 400;
       opacity: 0.85;
     }
@@ -107,29 +114,29 @@
     .card-triple .card-img { aspect-ratio: 1 / 1; }
 
     .card-body {
-      padding: 0.8mm 1.5mm 1.2mm;
+      padding: 0.6mm 1.2mm 0.8mm;
       text-align: center;
       border-top: 0.3pt solid #e8e3da;
     }
 
     .card-name {
       font-family: 'Basisschrift', Georgia, serif;
-      font-size: 7.5pt;
+      font-size: 7pt;
       font-weight: 600;
-      color: #5a6d7a;
+      color: #8a9dac;
     }
 
     .card-desc {
-      font-size: 6pt;
-      color: #8a9dac;
+      font-size: 5.5pt;
+      color: #b3c2cc;
     }
 
     footer {
       text-align: center;
       padding-top: 1.5mm;
       margin-top: 1.5mm;
-      border-top: 0.4pt solid #d4cdc2;
-      font-size: 6pt;
+      border-top: 0.3pt solid #d4cdc2;
+      font-size: 5.5pt;
       color: #a0b0bc;
     }
   </style>
@@ -138,8 +145,10 @@
 
 <header>
   <img class="header-logo" src="images/logo.jpg" alt="BETON &ndash; Handwerk mit Herz">
-  <h1>Preisliste</h1>
-  <p class="subtitle">Handgefertigte Betonfiguren &middot; Alle Preise in CHF &middot; Jedes St&uuml;ck ein Unikat</p>
+  <div class="header-text">
+    <h1>Preisliste</h1>
+    <p class="subtitle">Handgefertigte Betonfiguren &middot; Alle Preise in CHF &middot; Jedes St&uuml;ck ein Unikat</p>
+  </div>
 </header>
 
 <div class="grid" id="product-grid"></div>
@@ -203,7 +212,7 @@
   }
 
   var data = {
-    updated: '2025-03',
+    updated: '2026-02',
     products: [
       { id: 'hase-gross', name: 'Hase gross', description: 'Sitzend oder stehend \u00b7 patiniert', price: 40.00, pricePer: 'pro St\u00fcck', images: ['images/hase-gross-sitzend.png', 'images/hase-gross-stehend.png'], layout: 'wide' },
       { id: 'hase-klein', name: 'Hase klein', description: 'Silhouette', price: 8.00, pricePer: 'pro St\u00fcck', images: ['images/hase-klein.jpg'] },
