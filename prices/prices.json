@@ -94,7 +94,7 @@
       "id": "zwerg",
       "name": "Zwerg",
       "description": "Mit farbiger M\u00fctze",
-      "price": 0.00,
+      "price": 20.00,
       "pricePer": "pro St\u00fcck",
       "images": ["images/zwerg-1.jpg", "images/zwerg-2.jpg"],
       "layout": "wide"
@@ -103,7 +103,7 @@
       "id": "katze",
       "name": "Katze",
       "description": "Schlafend \u00b7 patiniert",
-      "price": 0.00,
+      "price": 40.00,
       "pricePer": "pro St\u00fcck",
       "images": ["images/katze.jpg"]
     },
