@@ -1,32 +1,51 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8">
   <title>Preisliste Betonfiguren</title>
   <style>
     @page {
       size: A4 portrait;
-      margin: 5mm 7mm;
+      margin: 8mm 10mm 14mm;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: 'Basisschrift', 'Segoe UI', sans-serif;
       color: #5a6d7a;
       background: #fff;
       line-height: 1.2;
-      font-size: 8pt;
+      font-size: 12pt;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
 
-    header {
+    .page-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .page-table td,
+    .page-table th {
+      padding: 0;
+      border: none;
+    }
+
+    .page-header {
       background: #8da7be;
-      text-align: center;
-      padding: 3mm 4mm 2.5mm;
-      margin-bottom: 2mm;
-      border-radius: 2mm;
+      padding: 4mm 5mm 3.5mm;
+      border-radius: 2.5mm;
+    }
+
+    .header-inner {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -34,37 +53,56 @@
     }
 
     .header-logo {
-      height: 12mm;
+      height: 16mm;
       width: auto;
-      border-radius: 1.5mm;
+      border-radius: 2mm;
       flex-shrink: 0;
     }
 
-    .header-text { text-align: left; }
+    .header-text {
+      text-align: left;
+    }
 
-    header h1 {
+    .page-header h1 {
       font-family: 'Basisschrift', Georgia, serif;
-      font-size: 13pt;
+      font-size: 16pt;
       font-weight: 700;
       color: #fff;
       line-height: 1.1;
     }
 
-    header .subtitle {
-      font-size: 6.5pt;
+    .page-header .subtitle {
+      font-size: 12pt;
       color: rgba(255, 255, 255, 0.75);
-      line-height: 1.2;
+      line-height: 1.3;
+    }
+
+    .header-spacer {
+      height: 3mm;
+    }
+
+    .page-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      text-align: center;
+      padding: 2mm 10mm;
+      border-top: 0.3pt solid #d4cdc2;
+      font-size: 12pt;
+      color: #a0b0bc;
+      background: #fff;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.5mm;
+      gap: 2.5mm;
     }
 
     .card {
       border: 0.3pt solid #d4cdc2;
-      border-radius: 1.5mm;
+      border-radius: 2.5mm;
       overflow: hidden;
       break-inside: avoid;
       display: flex;
@@ -78,21 +116,21 @@
 
     .card-img {
       width: 100%;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 1 / 1;
       object-fit: contain;
       display: block;
-      padding: 0.5mm;
+      padding: 1mm;
     }
 
     .card-badge {
       position: absolute;
-      top: 0.8mm;
-      right: 0.8mm;
+      top: 1mm;
+      right: 1mm;
       background: #6a89a3;
       color: #fff;
       font-weight: 600;
-      font-size: 7pt;
-      padding: 0.4mm 1.8mm;
+      font-size: 10pt;
+      padding: 0.8mm 2mm;
       border-radius: 1.5mm;
       text-align: center;
       line-height: 1.2;
@@ -100,147 +138,150 @@
 
     .card-badge-per {
       display: block;
-      font-size: 5pt;
+      font-size: 8pt;
       font-weight: 400;
       opacity: 0.85;
     }
 
-    .card-wide { grid-column: span 2; }
-    .card-wide .card-img-wrap { display: grid; grid-template-columns: 1fr 1fr; }
-    .card-wide .card-img { aspect-ratio: 1 / 1; }
-
-    .card-triple { grid-column: span 3; }
-    .card-triple .card-img-wrap { display: grid; grid-template-columns: 1fr 1fr 1fr; }
-    .card-triple .card-img { aspect-ratio: 1 / 1; }
-
     .card-body {
-      padding: 0.6mm 1.2mm 0.8mm;
+      padding: 2mm 2.5mm 2mm;
       text-align: center;
       border-top: 0.3pt solid #e8e3da;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .card-name {
       font-family: 'Basisschrift', Georgia, serif;
-      font-size: 7pt;
+      font-size: 13pt;
       font-weight: 600;
       color: #8a9dac;
     }
 
     .card-desc {
-      font-size: 5.5pt;
+      font-size: 12pt;
       color: #b3c2cc;
-    }
-
-    footer {
-      text-align: center;
-      padding-top: 1.5mm;
-      margin-top: 1.5mm;
-      border-top: 0.3pt solid #d4cdc2;
-      font-size: 5.5pt;
-      color: #a0b0bc;
     }
   </style>
 </head>
+
 <body>
 
-<header>
-  <img class="header-logo" src="images/logo.jpg" alt="BETON &ndash; Handwerk mit Herz">
-  <div class="header-text">
-    <h1>Preisliste</h1>
-    <p class="subtitle">Handgefertigte Betonfiguren &middot; Alle Preise in CHF &middot; Jedes St&uuml;ck ein Unikat</p>
+  <div class="page-footer">
+    <span id="footer-text">Alle Figuren sind handgefertigt &ndash; jedes St&uuml;ck ist ein Unikat.</span>
   </div>
-</header>
 
-<div class="grid" id="product-grid"></div>
+  <table class="page-table">
+    <thead>
+      <tr>
+        <th>
+          <div class="page-header">
+            <div class="header-inner">
+              <img class="header-logo" src="images/logo.jpg" alt="BETON &ndash; Handwerk mit Herz">
+              <div class="header-text">
+                <h1>Preisliste</h1>
+                <p class="subtitle">Handgefertigte Betonfiguren &middot; Alle Preise in CHF &middot; Jedes St&uuml;ck
+                  ein Unikat</p>
+              </div>
+            </div>
+          </div>
+          <div class="header-spacer"></div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="grid" id="product-grid"></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-<footer>
-  <span id="footer-text">Alle Figuren sind handgefertigt &ndash; jedes St&uuml;ck ist ein Unikat.</span>
-</footer>
+  <script>
+    (function () {
+      var grid = document.getElementById('product-grid');
 
-<script>
-(function () {
-  var grid = document.getElementById('product-grid');
+      function formatPrice(price) {
+        return 'Fr.\u00a0' + price.toFixed(2).replace('.00', '.\u2013');
+      }
 
-  function formatPrice(price) {
-    return 'Fr.\u00a0' + price.toFixed(2).replace('.00', '.\u2013');
-  }
+      function buildCard(product, imgSrc) {
+        var card = document.createElement('div');
+        card.className = 'card';
 
-  function buildCard(product) {
-    var layout = product.layout || 'single';
-    var card = document.createElement('div');
-    card.className = 'card';
-    if (layout === 'wide') card.className += ' card-wide';
-    if (layout === 'triple') card.className += ' card-triple';
+        var imgWrap = document.createElement('div');
+        imgWrap.className = 'card-img-wrap';
 
-    var imgWrap = document.createElement('div');
-    imgWrap.className = 'card-img-wrap';
+        var img = document.createElement('img');
+        img.className = 'card-img';
+        img.src = imgSrc;
+        img.alt = product.name;
+        imgWrap.appendChild(img);
 
-    product.images.forEach(function (src) {
-      var img = document.createElement('img');
-      img.className = 'card-img';
-      img.src = src;
-      img.alt = product.name;
-      imgWrap.appendChild(img);
-    });
+        var badge = document.createElement('span');
+        badge.className = 'card-badge';
+        badge.innerHTML = formatPrice(product.price);
+        if (product.pricePer) {
+          badge.innerHTML += '<span class="card-badge-per">' + product.pricePer + '</span>';
+        }
+        imgWrap.appendChild(badge);
 
-    var badge = document.createElement('span');
-    badge.className = 'card-badge';
-    badge.innerHTML = formatPrice(product.price);
-    if (product.pricePer) {
-      badge.innerHTML += '<span class="card-badge-per">' + product.pricePer + '</span>';
-    }
-    imgWrap.appendChild(badge);
+        var body = document.createElement('div');
+        body.className = 'card-body';
 
-    var body = document.createElement('div');
-    body.className = 'card-body';
+        var nameEl = document.createElement('div');
+        nameEl.className = 'card-name';
+        nameEl.textContent = product.name;
+        body.appendChild(nameEl);
 
-    var nameEl = document.createElement('div');
-    nameEl.className = 'card-name';
-    nameEl.textContent = product.name;
-    body.appendChild(nameEl);
+        if (product.description) {
+          var descEl = document.createElement('div');
+          descEl.className = 'card-desc';
+          descEl.textContent = product.description;
+          body.appendChild(descEl);
+        }
 
-    if (product.description) {
-      var descEl = document.createElement('div');
-      descEl.className = 'card-desc';
-      descEl.textContent = product.description;
-      body.appendChild(descEl);
-    }
+        card.appendChild(imgWrap);
+        card.appendChild(body);
+        return card;
+      }
 
-    card.appendChild(imgWrap);
-    card.appendChild(body);
-    return card;
-  }
+      var data = {
+        updated: 'Februar 2026',
+        products: [
+          { id: 'hase-gross', name: 'Hase gross', description: 'Sitzend oder stehend \u00b7 patiniert', price: 40.00, pricePer: 'pro St\u00fcck', images: ['images/hase-gross-sitzend.png', 'images/hase-gross-stehend.png'], layout: 'wide' },
+          { id: 'hase-klein', name: 'Hase klein', description: 'Silhouette', price: 8.00, pricePer: 'pro St\u00fcck', images: ['images/hase-klein.jpg'] },
+          { id: 'hasen-familie', name: 'Hasen Familie', price: 15.00, pricePer: 'pro Set', images: ['images/hasen-familie.jpg'] },
+          { id: 'osterei', name: 'Osterei mit Hase', description: 'Mit Hasen-Relief', price: 7.00, pricePer: 'pro St\u00fcck', images: ['images/osterei.jpg'] },
+          { id: 'osterei-bemalt', name: 'Osterei bemalt', description: 'Gross CHF 8.00 \u00b7 Klein CHF 6.00', price: 6.00, pricePer: 'ab', images: ['images/osterei-bemalt.jpg'] },
+          { id: 'blumenei', name: 'Blumenei', description: 'Mit Bl\u00fcten-Relief \u00b7 patiniert', price: 15.00, pricePer: 'pro St\u00fcck', images: ['images/blumenei.jpg'] },
+          { id: 'huhn', name: 'Huhn', description: 'Verschiedene Modelle \u00b7 patiniert mit floralen Mustern', price: 30.00, pricePer: 'pro St\u00fcck', images: ['images/huhn-1.png', 'images/huhn-2.png', 'images/huhn-3.png'], layout: 'triple' },
+          { id: 'schmetterling', name: 'Schmetterling', description: 'Mit Ausschnitten \u00b7 farbig', price: 10.00, pricePer: 'pro St\u00fcck', images: ['images/schmetterling.jpg'] },
+          { id: 'rose-farbig', name: 'Rose farbig', price: 10.00, pricePer: 'pro St\u00fcck', images: ['images/rose-farbig.jpg'] },
+          { id: 'wichtel', name: 'Wichtel', description: 'Verschiedene Farben', price: 18.00, pricePer: 'pro St\u00fcck', images: ['images/wichtel.png'] },
+          { id: 'wichtel-3er-set', name: 'Wichtel 3er Set', description: 'Gold \u00b7 nur im Set erh\u00e4ltlich', price: 30.00, pricePer: 'pro Set', images: ['images/wichtel-3er-set.png'] },
+          { id: 'zwerg', name: 'Zwerg', description: 'Mit farbiger M\u00fctze', price: 20.00, pricePer: 'pro St\u00fcck', images: ['images/zwerg-1.jpg', 'images/zwerg-2.jpg'], layout: 'wide' },
+          { id: 'katze', name: 'Katze', description: 'Schlafend \u00b7 patiniert', price: 40.00, pricePer: 'pro St\u00fcck', images: ['images/katze.jpg'] },
+          { id: 'vogeltraenke-klein', name: 'Vogeltr\u00e4nke klein', description: 'Mit Mosaik \u00b7 patiniert', price: 35.00, pricePer: 'pro St\u00fcck', images: ['images/vogeltraenke-klein.png'] },
+          { id: 'haende', name: 'H\u00e4nde', price: 15.00, pricePer: 'pro St\u00fcck', images: ['images/haende.png'] }
+        ]
+      };
 
-  var data = {
-    updated: '2026-02',
-    products: [
-      { id: 'hase-gross', name: 'Hase gross', description: 'Sitzend oder stehend \u00b7 patiniert', price: 40.00, pricePer: 'pro St\u00fcck', images: ['images/hase-gross-sitzend.png', 'images/hase-gross-stehend.png'], layout: 'wide' },
-      { id: 'hase-klein', name: 'Hase klein', description: 'Silhouette', price: 8.00, pricePer: 'pro St\u00fcck', images: ['images/hase-klein.jpg'] },
-      { id: 'hasen-familie', name: 'Hasen Familie', price: 15.00, pricePer: 'pro Set', images: ['images/hasen-familie.jpg'] },
-      { id: 'osterei', name: 'Osterei mit Hase', description: 'Mit Hasen-Relief', price: 7.00, pricePer: 'pro St\u00fcck', images: ['images/osterei.jpg'] },
-      { id: 'osterei-bemalt', name: 'Osterei bemalt', description: 'Gross CHF 8.00 \u00b7 Klein CHF 6.00', price: 6.00, pricePer: 'ab', images: ['images/osterei-bemalt.jpg'] },
-      { id: 'blumenei', name: 'Blumenei', description: 'Mit Bl\u00fcten-Relief \u00b7 patiniert', price: 15.00, pricePer: 'pro St\u00fcck', images: ['images/blumenei.jpg'] },
-      { id: 'huhn', name: 'Huhn', description: 'Verschiedene Modelle \u00b7 patiniert mit floralen Mustern', price: 30.00, pricePer: 'pro St\u00fcck', images: ['images/huhn-1.png', 'images/huhn-2.png', 'images/huhn-3.png'], layout: 'triple' },
-      { id: 'schmetterling', name: 'Schmetterling', description: 'Mit Ausschnitten \u00b7 farbig', price: 10.00, pricePer: 'pro St\u00fcck', images: ['images/schmetterling.jpg'] },
-      { id: 'rose-farbig', name: 'Rose farbig', price: 10.00, pricePer: 'pro St\u00fcck', images: ['images/rose-farbig.jpg'] },
-      { id: 'wichtel', name: 'Wichtel', description: 'Verschiedene Farben', price: 18.00, pricePer: 'pro St\u00fcck', images: ['images/wichtel.png'] },
-      { id: 'wichtel-3er-set', name: 'Wichtel 3er Set', description: 'Gold \u00b7 nur im Set erh\u00e4ltlich', price: 30.00, pricePer: 'pro Set', images: ['images/wichtel-3er-set.png'] },
-      { id: 'zwerg', name: 'Zwerg', description: 'Mit farbiger M\u00fctze', price: 20.00, pricePer: 'pro St\u00fcck', images: ['images/zwerg-1.jpg', 'images/zwerg-2.jpg'], layout: 'wide' },
-      { id: 'katze', name: 'Katze', description: 'Schlafend \u00b7 patiniert', price: 40.00, pricePer: 'pro St\u00fcck', images: ['images/katze.jpg'] },
-      { id: 'vogeltraenke-klein', name: 'Vogeltr\u00e4nke klein', description: 'Mit Mosaik \u00b7 patiniert', price: 35.00, pricePer: 'pro St\u00fcck', images: ['images/vogeltraenke-klein.png'] },
-      { id: 'haende', name: 'H\u00e4nde', price: 15.00, pricePer: 'pro St\u00fcck', images: ['images/haende.png'] }
-    ]
-  };
+      function render(d) {
+        d.products.forEach(function (p) {
+          p.images.forEach(function (src) { grid.appendChild(buildCard(p, src)); });
+        });
+        document.getElementById('footer-text').textContent =
+          'Alle Figuren sind handgefertigt \u2013 jedes St\u00fcck ist ein Unikat. Preise Stand ' + d.updated + '.';
+      }
 
-  function render(d) {
-    d.products.forEach(function (p) { grid.appendChild(buildCard(p)); });
-    document.getElementById('footer-text').textContent =
-      'Alle Figuren sind handgefertigt \u2013 jedes St\u00fcck ist ein Unikat. Preise Stand ' + d.updated + '.';
-  }
-
-  render(data);
-})();
-</script>
+      render(data);
+    })();
+  </script>
 
 </body>
+
 </html>

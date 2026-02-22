@@ -143,7 +143,7 @@
       display: block;
       transition: transform 0.4s ease;
       cursor: pointer;
-      padding: 0.6rem;
+      padding: 0.3rem;
     }
 
     .card:hover .card-img {
@@ -157,8 +157,8 @@
       background: var(--blue-deeper);
       color: var(--cream-light);
       font-weight: 600;
-      font-size: 0.95rem;
-      padding: 0.3rem 0.8rem;
+      font-size: 1.3rem;
+      padding: 0.35rem 0.9rem;
       border-radius: 14px;
       box-shadow: 0 2px 8px rgba(59, 74, 86, 0.18);
       pointer-events: none;
@@ -168,7 +168,7 @@
 
     .card-badge-per {
       display: block;
-      font-size: 0.7rem;
+      font-size: 0.85rem;
       font-weight: 400;
       opacity: 0.85;
     }
@@ -185,44 +185,19 @@
 
     .card-name {
       font-family: 'Basisschrift', Georgia, serif;
-      font-size: 1.1rem;
+      font-size: 1.5rem;
       font-weight: 600;
       color: var(--text-dark);
       margin-bottom: 0.15rem;
     }
 
     .card-desc {
-      font-size: 0.82rem;
+      font-size: 1.1rem;
       color: var(--text-muted);
       font-weight: 400;
     }
 
-    /* Multi-image layouts */
-    .card-wide {
-      grid-column: span 2;
-    }
-
-    .card-wide .card-img-wrap {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .card-wide .card-img {
-      aspect-ratio: 3 / 4;
-    }
-
-    .card-triple {
-      grid-column: span 3;
-    }
-
-    .card-triple .card-img-wrap {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    .card-triple .card-img {
-      aspect-ratio: 3 / 4;
-    }
+    
 
     /* === LIGHTBOX === */
     .lightbox {
@@ -343,18 +318,6 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .card-wide {
-        grid-column: span 2;
-      }
-
-      .card-triple {
-        grid-column: span 2;
-      }
-
-      .card-triple .card-img-wrap {
-        grid-template-columns: 1fr 1fr 1fr;
-      }
-
       header h1 {
         font-size: 2rem;
       }
@@ -363,22 +326,6 @@
     @media (max-width: 560px) {
       .grid {
         grid-template-columns: 1fr;
-      }
-
-      .card-wide {
-        grid-column: span 1;
-      }
-
-      .card-triple {
-        grid-column: span 1;
-      }
-
-      .card-wide .card-img-wrap {
-        grid-template-columns: 1fr;
-      }
-
-      .card-triple .card-img-wrap {
-        grid-template-columns: 1fr 1fr 1fr;
       }
 
       header {
@@ -497,27 +444,22 @@
         if (e.key === 'Escape') closeLightbox();
       });
 
-      function buildCard(product) {
-        var layout = product.layout || 'single';
+      function buildCard(product, imgSrc) {
         var card = document.createElement('div');
         card.className = 'card';
-        if (layout === 'wide') card.className += ' card-wide';
-        if (layout === 'triple') card.className += ' card-triple';
 
         var imgWrap = document.createElement('div');
         imgWrap.className = 'card-img-wrap';
 
-        product.images.forEach(function (src) {
-          var img = document.createElement('img');
-          img.className = 'card-img';
-          img.src = src;
-          img.alt = product.name;
-          img.loading = 'lazy';
-          img.addEventListener('click', function () {
-            openLightbox(src, product.name, product.price);
-          });
-          imgWrap.appendChild(img);
+        var img = document.createElement('img');
+        img.className = 'card-img';
+        img.src = imgSrc;
+        img.alt = product.name;
+        img.loading = 'lazy';
+        img.addEventListener('click', function () {
+          openLightbox(imgSrc, product.name, product.price);
         });
+        imgWrap.appendChild(img);
 
         var badge = document.createElement('span');
         badge.className = 'card-badge';
@@ -572,7 +514,9 @@
       function renderProducts(data) {
         grid.innerHTML = '';
         data.products.forEach(function (product) {
-          grid.appendChild(buildCard(product));
+          product.images.forEach(function (src) {
+            grid.appendChild(buildCard(product, src));
+          });
         });
         var footerText = document.getElementById('footer-text');
         footerText.textContent =
