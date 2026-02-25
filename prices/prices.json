@@ -4,8 +4,8 @@
   "products": [
     {
       "id": "hase-gross",
-      "name": "Hase gross",
-      "description": "Sitzend oder stehend \u00b7 patiniert",
+      "name": "Hase sitzend",
+      "description": "Patiniert",
       "price": 40.00,
       "pricePer": "pro St\u00fcck",
       "images": ["images/hase-gross-sitzend.png", "images/hase-gross-stehend.png"],
@@ -13,7 +13,7 @@
     },
     {
       "id": "hase-klein",
-      "name": "Hase klein",
+      "name": "Hase stehend",
       "description": "Silhouette",
       "price": 8.00,
       "pricePer": "pro St\u00fcck",
@@ -53,7 +53,7 @@
     {
       "id": "huhn",
       "name": "Huhn",
-      "description": "Verschiedene Modelle \u00b7 patiniert mit floralen Mustern",
+      "description": "Modelle 1-3 \u00b7 patiniert mit floralen Mustern",
       "price": 30.00,
       "pricePer": "pro St\u00fcck",
       "images": ["images/huhn-1.png", "images/huhn-2.png", "images/huhn-3.png"],
