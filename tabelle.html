@@ -163,64 +163,55 @@
     return 'Fr.\u00a0' + price.toFixed(2).replace('.00', '.\u2013');
   }
 
-  var data = {
-    updated: '2026-02',
-    products: [
-      { id: 'hase-gross', name: 'Hase gross', description: 'Sitzend oder stehend \u00b7 patiniert', price: 40.00, pricePer: 'pro St\u00fcck', images: ['images/hase-gross-sitzend.png'] },
-      { id: 'hase-klein', name: 'Hase klein', description: 'Silhouette', price: 8.00, pricePer: 'pro St\u00fcck', images: ['images/hase-klein.jpg'] },
-      { id: 'hasen-familie', name: 'Hasen Familie', price: 15.00, pricePer: 'pro Set', images: ['images/hasen-familie.jpg'] },
-      { id: 'osterei', name: 'Osterei mit Hase', description: 'Mit Hasen-Relief', price: 7.00, pricePer: 'pro St\u00fcck', images: ['images/osterei.jpg'] },
-      { id: 'osterei-bemalt', name: 'Osterei bemalt', description: 'Gross CHF 8.00 \u00b7 Klein CHF 6.00', price: 6.00, pricePer: 'ab', images: ['images/osterei-bemalt.jpg'] },
-      { id: 'blumenei', name: 'Blumenei', description: 'Mit Bl\u00fcten-Relief \u00b7 patiniert', price: 15.00, pricePer: 'pro St\u00fcck', images: ['images/blumenei.jpg'] },
-      { id: 'huhn', name: 'Huhn', description: 'Verschiedene Modelle \u00b7 patiniert mit floralen Mustern', price: 30.00, pricePer: 'pro St\u00fcck', images: ['images/huhn-1.png'] },
-      { id: 'schmetterling', name: 'Schmetterling', description: 'Mit Ausschnitten \u00b7 farbig', price: 10.00, pricePer: 'pro St\u00fcck', images: ['images/schmetterling.jpg'] },
-      { id: 'rose-farbig', name: 'Rose farbig', price: 10.00, pricePer: 'pro St\u00fcck', images: ['images/rose-farbig.jpg'] },
-      { id: 'wichtel', name: 'Wichtel', description: 'Verschiedene Farben', price: 18.00, pricePer: 'pro St\u00fcck', images: ['images/wichtel.png'] },
-      { id: 'wichtel-3er-set', name: 'Wichtel 3er Set', description: 'Gold \u00b7 nur im Set erh\u00e4ltlich', price: 30.00, pricePer: 'pro Set', images: ['images/wichtel-3er-set.png'] },
-      { id: 'zwerg', name: 'Zwerg', description: 'Mit farbiger M\u00fctze', price: 20.00, pricePer: 'pro St\u00fcck', images: ['images/zwerg-1.jpg'] },
-      { id: 'katze', name: 'Katze', description: 'Schlafend \u00b7 patiniert', price: 40.00, pricePer: 'pro St\u00fcck', images: ['images/katze.jpg'] },
-      { id: 'vogeltraenke-klein', name: 'Vogeltr\u00e4nke klein', description: 'Mit Mosaik \u00b7 patiniert', price: 35.00, pricePer: 'pro St\u00fcck', images: ['images/vogeltraenke-klein.png'] },
-      { id: 'haende', name: 'H\u00e4nde', price: 15.00, pricePer: 'pro St\u00fcck', images: ['images/haende.png'] }
-    ]
-  };
+  function render(data) {
+    data.products.forEach(function (p) {
+      var tr = document.createElement('tr');
 
-  data.products.forEach(function (p) {
-    var tr = document.createElement('tr');
+      var tdImg = document.createElement('td');
+      tdImg.className = 'td-img';
+      var img = document.createElement('img');
+      img.src = p.images[0];
+      img.alt = p.name;
+      tdImg.appendChild(img);
 
-    var tdImg = document.createElement('td');
-    tdImg.className = 'td-img';
-    var img = document.createElement('img');
-    img.src = p.images[0];
-    img.alt = p.name;
-    tdImg.appendChild(img);
+      var tdInfo = document.createElement('td');
+      var nameDiv = document.createElement('div');
+      nameDiv.className = 'td-name';
+      nameDiv.textContent = p.name;
+      tdInfo.appendChild(nameDiv);
+      if (p.description) {
+        var descDiv = document.createElement('div');
+        descDiv.className = 'td-desc';
+        descDiv.textContent = p.description;
+        tdInfo.appendChild(descDiv);
+      }
 
-    var tdInfo = document.createElement('td');
-    var nameDiv = document.createElement('div');
-    nameDiv.className = 'td-name';
-    nameDiv.textContent = p.name;
-    tdInfo.appendChild(nameDiv);
-    if (p.description) {
-      var descDiv = document.createElement('div');
-      descDiv.className = 'td-desc';
-      descDiv.textContent = p.description;
-      tdInfo.appendChild(descDiv);
-    }
+      var tdPrice = document.createElement('td');
+      tdPrice.className = 'td-price';
+      tdPrice.innerHTML = formatPrice(p.price);
+      if (p.pricePer) {
+        tdPrice.innerHTML += '<span class="td-price-per">' + p.pricePer + '</span>';
+      }
 
-    var tdPrice = document.createElement('td');
-    tdPrice.className = 'td-price';
-    tdPrice.innerHTML = formatPrice(p.price);
-    if (p.pricePer) {
-      tdPrice.innerHTML += '<span class="td-price-per">' + p.pricePer + '</span>';
-    }
+      tr.appendChild(tdImg);
+      tr.appendChild(tdInfo);
+      tr.appendChild(tdPrice);
+      tbody.appendChild(tr);
+    });
 
-    tr.appendChild(tdImg);
-    tr.appendChild(tdInfo);
-    tr.appendChild(tdPrice);
-    tbody.appendChild(tr);
-  });
+    document.getElementById('footer-text').textContent =
+      'Alle Figuren sind handgefertigt \u2013 jedes St\u00fcck ist ein Unikat. Preise Stand ' + data.updated + '.';
+  }
 
-  document.getElementById('footer-text').textContent =
-    'Alle Figuren sind handgefertigt \u2013 jedes St\u00fcck ist ein Unikat. Preise Stand ' + data.updated + '.';
+  fetch('prices/prices.json')
+    .then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
+    .then(function (data) { render(data); })
+    .catch(function () {
+      tbody.innerHTML = '<tr><td colspan="3" style="color:#c0392b;padding:1rem">Fehler: prices/prices.json konnte nicht geladen werden. Bitte &uuml;ber einen Webserver &ouml;ffnen.</td></tr>';
+    });
 })();
 </script>
 
