@@ -254,30 +254,31 @@
       var data = {
         updated: 'Februar 2026',
         products: [
-          { id: 'hase-gross', name: 'Hase sitzend', description: 'Patiniert', price: 40.00, pricePer: 'pro St\u00fcck', images: ['images/hase-gross-sitzend.png', 'images/hase-gross-stehend.png'], layout: 'wide' },
-          { id: 'hase-klein', name: 'Hase stehend', description: 'Silhouette', price: 8.00, pricePer: 'pro St\u00fcck', images: ['images/hase-klein.jpg'] },
-          { id: 'hasen-familie', name: 'Hasen Familie', price: 15.00, pricePer: 'pro Set', images: ['images/hasen-familie.jpg'] },
-          { id: 'osterei', name: 'Osterei mit Hase', description: 'Mit Hasen-Relief', price: 7.00, pricePer: 'pro St\u00fcck', images: ['images/osterei.jpg'] },
+          { id: 'hase-gross-sitzend', name: 'Hase sitzend', description: 'patiniert', price: 40.00, pricePer: 'pro St\u00fcck', images: ['images/hase-gross-sitzend.png'] },
+          { id: 'hase-gross-stehend', name: 'Hase stehend', description: 'patiniert', price: 40.00, pricePer: 'pro St\u00fcck', images: ['images/hase-gross-stehend.png'] },
+          { id: 'hase-klein', name: 'Hase klein', description: 'Silhouette', price: 8.00, pricePer: 'pro St\u00fcck', images: ['images/hase-klein.jpg'] },
+          { id: 'hasen-familie', name: 'Hasen-Familie', price: 15.00, pricePer: 'pro Set', images: ['images/hasen-familie.jpg'] },
+          { id: 'osterei', name: 'Osterei mit Hase', price: 7.00, pricePer: 'pro St\u00fcck', images: ['images/osterei.jpg'] },
           { id: 'osterei-bemalt', name: 'Osterei bemalt', description: 'Gross CHF 8.00 \u00b7 Klein CHF 6.00', price: 6.00, pricePer: 'ab', images: ['images/osterei-bemalt.jpg'] },
-          { id: 'blumenei', name: 'Blumenei', description: 'Mit Bl\u00fcten-Relief \u00b7 patiniert', price: 15.00, pricePer: 'pro St\u00fcck', images: ['images/blumenei.jpg'] },
-          { id: 'huhn', name: 'Huhn', description: 'patiniert mit floralen Mustern', price: 30.00, pricePer: 'pro St\u00fcck', images: ['images/huhn-1.png', 'images/huhn-2.png', 'images/huhn-3.png'], layout: 'triple', enumerate: true },
+          { id: 'blumenei', name: 'BlumenEi', description: 'Mit Bl\u00fcten-Relief', price: 15.00, pricePer: 'pro St\u00fcck', images: ['images/blumenei.jpg'] },
+          { id: 'huhn-1', name: 'Huhn 1', description: 'patiniert', price: 30.00, pricePer: 'pro St\u00fcck', images: ['images/huhn-1.png'] },
+          { id: 'huhn-2', name: 'Huhn 2', description: 'patiniert', price: 30.00, pricePer: 'pro St\u00fcck', images: ['images/huhn-2.png'] },
+          { id: 'huhn-3', name: 'Huhn 3', description: 'patiniert', price: 30.00, pricePer: 'pro St\u00fcck', images: ['images/huhn-3.png'] },
           { id: 'schmetterling', name: 'Schmetterling', description: 'Mit Ausschnitten \u00b7 farbig', price: 10.00, pricePer: 'pro St\u00fcck', images: ['images/schmetterling.jpg'] },
           { id: 'rose-farbig', name: 'Rose farbig', price: 10.00, pricePer: 'pro St\u00fcck', images: ['images/rose-farbig.jpg'] },
-          { id: 'wichtel', name: 'Wichtel', description: 'Verschiedene Farben', price: 18.00, pricePer: 'pro St\u00fcck', images: ['images/wichtel.png'] },
+          { id: 'wichtel', name: 'Wichtel / Zwerg', description: 'Verschiedene Farben', price: 18.00, pricePer: 'pro St\u00fcck', images: ['images/wichtel.png'] },
           { id: 'wichtel-3er-set', name: 'Wichtel 3er Set', description: 'Gold \u00b7 nur im Set erh\u00e4ltlich', price: 30.00, pricePer: 'pro Set', images: ['images/wichtel-3er-set.png'] },
           { id: 'zwerg', name: 'Zwerg', description: 'Mit farbiger M\u00fctze', price: 20.00, pricePer: 'pro St\u00fcck', images: ['images/zwerg-1.jpg', 'images/zwerg-2.jpg'], layout: 'wide' },
           { id: 'katze', name: 'Katze', description: 'Schlafend \u00b7 patiniert', price: 40.00, pricePer: 'pro St\u00fcck', images: ['images/katze.jpg'] },
-          { id: 'vogeltraenke-klein', name: 'Vogeltr\u00e4nke klein', description: 'Mit Mosaik \u00b7 patiniert', price: 35.00, pricePer: 'pro St\u00fcck', images: ['images/vogeltraenke-klein.png'] },
+          { id: 'vogeltraenke-klein', name: 'Vogeltr\u00e4nke klein', description: 'patiniert', price: 35.00, pricePer: 'pro St\u00fcck', images: ['images/vogeltraenke-klein.png'] },
           { id: 'haende', name: 'H\u00e4nde', price: 15.00, pricePer: 'pro St\u00fcck', images: ['images/haende.png'] }
         ]
       };
 
       function render(d) {
         d.products.forEach(function (p) {
-          p.images.forEach(function (src, i) {
-            var card = buildCard(p.enumerate ? Object.assign({}, p, { name: p.name + ' ' + (i + 1) }) : p, src);
-            grid.appendChild(card);
-          });
+          var card = buildCard(p, p.images[0]);
+          grid.appendChild(card);
         });
         document.getElementById('footer-text').textContent =
           'Alle Figuren sind handgefertigt \u2013 jedes St\u00fcck ist ein Unikat. Preise Stand ' + d.updated + '.';
